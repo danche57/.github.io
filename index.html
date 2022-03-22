@@ -160,7 +160,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/23/My-New-Post-1/" class="post-title-link" itemprop="url">My New Post</a>
+            <a href="/2022/03/23/My-New-Post-1/" class="post-title-link" itemprop="url">qt</a>
         </h2>
 
         <div class="post-meta">
@@ -169,8 +169,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-03-23 04:53:27" itemprop="dateCreated datePublished" datetime="2022-03-23T04:53:27+08:00">2022-03-23</time>
+              <time title="创建时间：2022-03-23 04:53:27 / 修改时间：04:55:56" itemprop="dateCreated datePublished" datetime="2022-03-23T04:53:27+08:00">2022-03-23</time>
             </span>
 
           
@@ -184,7 +185,75 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <p>按钮<br>QPushButton 就是常见的按钮</p>
+<p>信号：被点击<br>当按钮被点击就会发出 clicked 信号，可以这样指定处理该信号的函数</p>
+<p>button.clicked.connect(handleCalc)<br>改变文本<br>代码中可以使用 setText 方法来改变按钮文本，比如</p>
+<p>button.setText(text)<br>禁用、启用<br>所有控件（继承自QWidget类）都支持 禁用和启用方法。</p>
+<p>禁用后，该控件不再处理用户操作</p>
+<p>禁用<br>button.setEnabled(False)<br>启用<br>button.setEnabled(True)<br>设置图标<br>可以通过如下方法给按钮设置图标</p>
+<p>from PySide2.QtCore import Qt,QSize<br>from PySide2.QtGui import QIcon</p>
+<h1 id="设置图标"><a href="#设置图标" class="headerlink" title="设置图标"></a>设置图标</h1><p>button.setIcon(QIcon(‘logo.png’))</p>
+<h1 id="设置图标大小"><a href="#设置图标大小" class="headerlink" title="设置图标大小"></a>设置图标大小</h1><p>button.setIconSize(QSize(30, 30))<br>单行文本框<br>QLineEdit 是只能单行编辑的文本框。</p>
+<p>官网介绍</p>
+<p>信号：文本被修改<br>当文本框中的内容被键盘编辑，被点击就会发出 textChanged 信号，可以这样指定处理该信号的函数</p>
+<p>edit.textChanged.connect(handleTextChange)<br>Qt在调用这个信号处理函数时，传入的参数就是 文本框目前的内容字符串。</p>
+<p>信号：按下回车键<br>当用户在文本框中任何时候按下回车键，就会发出 returnPressed 信号。</p>
+<p>有时我们需要处理这种情况，比如登录界面，用户输完密码直接按回车键就进行登录处理，比再用鼠标点击登录按钮快捷的多。</p>
+<p>可以指定处理 returnPressed 信号，如下所示</p>
+<p>passwordEdit.returnPressed.connect(onLogin)<br>获取文本<br>通过 text 方法获取编辑框内的文本内容，比如</p>
+<p>text &#x3D; edit.text()<br>设置提示<br>通过 setPlaceholderText 方法可以设置提示文本内容，比如</p>
+<p>edit.setPlaceholderText(‘请在这里输入URL’)<br>设置文本<br>通过 setText 方法设置编辑框内的文本内容为参数里面的文本字符串，比如</p>
+<p>edit.setText(‘你好，白月黑羽’)<br>原来的所有内容会被清除</p>
+<p>清除所有文本<br>clear 方法可以清除编辑框内所有的文本内容，比如</p>
+<p>edit.clear()<br>拷贝文本到剪贴板<br>copy 方法可以拷贝当前选中文本到剪贴板，比如</p>
+<p>edit.copy()<br>粘贴剪贴板文本<br>paste 方法可以把剪贴板内容，拷贝到编辑框当前光标所在处，比如</p>
+<p>edit.paste()<br>多行纯文本框<br>QPlainTextEdit 是可以 多行 的纯文本编辑框。</p>
+<p>image</p>
+<p>官网介绍</p>
+<p>注意：在苹果MacOS上，有 更新文本框内容后，需要鼠标滑过才能更新显示的bug，参考这里</p>
+<p>文本浏览框 内置了一个 QTextDocument 类型的对象 ，存放文档。</p>
+<p>信号：文本被修改<br>当文本框中的内容被键盘编辑，被点击就会发出 textChanged 信号，可以这样指定处理该信号的函数</p>
+<p>edit.textChanged.connect(handleTextChange)<br>注意： Qt在调用这个信号处理函数时，不会传入文本框目前的内容字符串，作为参数。</p>
+<p>这个行为 和 单行文本框不同。</p>
+<p>信号：光标位置改变<br>当文本框中的光标位置变动，就会发出 cursorPositionChanged 信号，可以这样指定处理该信号的函数</p>
+<p>edit.cursorPositionChanged.connect(handleChanged)<br>获取文本<br>通过 toPlainText 方法获取编辑框内的文本内容，比如</p>
+<p>text &#x3D; edit.toPlainText()<br>获取选中文本</p>
+<h1 id="获取-QTextCursor-对象"><a href="#获取-QTextCursor-对象" class="headerlink" title="获取 QTextCursor 对象"></a>获取 QTextCursor 对象</h1><p>textCursor &#x3D; edit.textCursor()<br>selection &#x3D; textCursor.selectedText()<br>设置提示<br>通过 setPlaceholderText 方法可以设置提示文本内容，比如</p>
+<p>edit.setPlaceholderText(‘请在这里输入薪资表’)<br>设置文本<br>通过 setPlainText 方法设置编辑框内的文本内容 为参数里面的文本字符串，比如</p>
+<p>edit.setPlainText(‘’’你好，白月黑羽<br>hello byhy’’’)<br>原来的所有内容会被清除</p>
+<p>在末尾添加文本<br>通过 appendPlainText 方法在编辑框末尾添加文本内容，比如</p>
+<p>edit.appendPlainText(‘你好，白月黑羽’)<br>注意：这种方法会在添加文本后 自动换行</p>
+<p>在光标处插入文本<br>通过 insertPlainText 方法在编辑框末尾添加文本内容，比如</p>
+<p>edit.insertPlainText(‘你好，白月黑羽’)<br>注意：这种方法 不会 在添加文本后自动换行</p>
+<p>清除所有文本<br>clear 方法可以清除编辑框内所有的文本内容，比如</p>
+<p>edit.clear()<br>拷贝文本到剪贴板<br>copy 方法可以拷贝当前选中文本到剪贴板，比如</p>
+<p>edit.copy()<br>粘贴剪贴板文本<br>paste 方法可以把剪贴板内容，拷贝到编辑框当前光标所在处，比如</p>
+<p>edit.paste()<br>设置最大行数<br>有时候，代码会不断往文本框添加内容，为了防止占用过多资源，可以设置文本框最大行数。</p>
+<p>像这样：</p>
+<p>edit.document().setMaximumBlockCount(1000)<br>就设置最大为 1000行</p>
+<p>文本浏览框<br>QTextBrowser 是 只能查看文本 控件。</p>
+<p>通常用来显示一些操作日志信息、或者不需要用户编辑的大段文本内容。</p>
+<p>官网介绍</p>
+<p>该控件 获取文本、设置文本、清除文本、剪贴板复制粘贴 等等， 都和上面介绍的 多行纯文本框是一样的。</p>
+<p>下面我们主要讲解不同点</p>
+<p>在末尾添加文本<br>通过 append 方法在编辑框末尾添加文本内容，比如</p>
+<p>textBrowser.append(‘你好，白月黑羽’)</p>
+<p>有时，浏览框里面的内容长度超出了可见范围，我们在末尾添加了内容，往往希望控件自动翻滚到当前添加的这行，</p>
+<p>可以通过 ensureCursorVisible 方法来实现</p>
+<p>textBrowser.append(‘你好，白月黑羽’)<br>textBrowser.ensureCursorVisible()<br>注意：这种方法会在添加文本后 自动换行</p>
+<p>在光标处插入文本<br>通过 insertPlainText 方法在编辑框末尾添加文本内容，比如</p>
+<p>edit.insertPlainText(‘你好，白月黑羽’)<br>注意：这种方法 不会 在添加文本后自动换行</p>
+<p>标签<br>QLabel 就是常见的标签，可以用来显示文字（包括纯文本和富文本）、图片 甚至动画。</p>
+<p>image</p>
+<p>官网介绍</p>
+<p>改变文本<br>代码中可以使用 setText 方法来改变标签文本内容，比如</p>
+<p>button.setText(text)<br>显示图片<br>QLabel可以用来显示图片，有时一个图片可以让界面好看很多，如下图所示</p>
+<p>image</p>
+<p>怎么用QLabel 显示图片呢？</p>
+<p>可以在 Qt Designer上 属性编辑器 QLabel 栏 的 pixmap 属性设置中选择图片文件指定。</p>
+<p>下面有示例代码包， 演示如何显示图片，并且控制图片的显示风格</p>
+<p>大家点击这里，下载一个 程序界面代码，解压后，拖动里面的main.ui界面文件到Qt设计师里面。</p>
+
       
     </div>
 
